@@ -41,11 +41,14 @@
             }
         },
         created() {
+            // console.log('mounted',authuser);
+
             this.fetchMessages();
              Echo.private(`chat.${authuser.id}`)
-            .listen('MessageSend', (e) => {
-            this.selectUser(e.message.from);
-                console.log(e);
+            .listen('MessageSent', (e) => {
+              console.log(e);
+              console.log('mounted',authuser);
+
             });
         },
         methods: {

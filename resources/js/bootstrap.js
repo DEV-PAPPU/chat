@@ -52,6 +52,7 @@ if (token) {
      wsPort: 6001,
      disableStats: false,
      encrypted:false,
+     forceTLS : false,
      enabledTransports: ['ws', 'wss'],
      
  })

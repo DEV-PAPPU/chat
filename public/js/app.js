@@ -2107,21 +2107,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
+    // console.log('mounted',authuser);
     this.fetchMessages();
-    Echo["private"]("chat.".concat(authuser.id)).listen('MessageSend', function (e) {
-      _this.selectUser(e.message.from);
-
+    Echo["private"]("chat.".concat(authuser.id)).listen('MessageSent', function (e) {
       console.log(e);
+      console.log('mounted', authuser);
     });
   },
   methods: {
     fetchMessages: function fetchMessages() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get('messages').then(function (response) {
-        _this2.messages = response.data;
+        _this.messages = response.data;
       });
     },
     sendMessage: function sendMessage() {
@@ -2276,6 +2274,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsPort: 6001,
   disableStats: false,
   encrypted: false,
+  forceTLS: false,
   enabledTransports: ['ws', 'wss']
 });
 
